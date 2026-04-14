@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  # PostgreSQL
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:zalodb}
+    username: ${POSTGRES_USER:zalouser}
+    password: ${POSTGRES_PASSWORD:zalosecret}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # MongoDB
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017}
+      database: ${MONGO_DB:zalochat}
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+  # Jackson
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+# JWT
+app:
+  jwt:
+    secret: ${JWT_SECRET:zalo-clone-super-secret-key-change-in-production-2026}
+    expiration-ms: 86400000  # 24 hours
+
+  # LiveKit
+  livekit:
+    host: ${LIVEKIT_HOST:http://localhost:7880}
+    api-key: ${LIVEKIT_API_KEY:devkey}
+    api-secret: ${LIVEKIT_API_SECRET:secret-devkey-change-in-production}
+
+# SpringDoc / Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# Logging
+logging:
+  level:
+    com.zalo.clone: DEBUG
+    org.springframework.data.mongodb: WARN
+    org.springframework.data.redis: WARN

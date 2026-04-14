@@ -1,0 +1,22 @@
+# Exclude local environment files
+.env
+.DS_Store
+
+# Java / Spring Boot
+backend/target/
+backend/*.jar
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/jdk-*/
+
+# Frontend output and dependencies
+ui/node_modules/
+ui/dist/
+ui/.dart_tool/
+ui/.pub-cache/
+ui/.pub/
+ui/build/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
